@@ -1,3 +1,3 @@
 # heartbeat-client
 
-Dynamic DNS for Gandi client.
+Dynamic DNS client for GANDI
