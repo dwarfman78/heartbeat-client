@@ -1,0 +1,5 @@
+set ( CMAKE_SYSTEM_NAME Linux )
+set ( CMAKE_SYSTEM_PROCESSOR mips )
+set ( CMAKE_C_COMPILER mips-openwrt-linux-uclibc-gcc )
+set ( CMAKE_CXX_COMPILER mips-openwrt-linux-uclibc-g++ )
+set ( CMAKE_FIND_ROOT_PATH /home/fabien/dev/toolChain/root )
