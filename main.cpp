@@ -17,11 +17,21 @@ claim that you wrote the original software. If you use this software
 3. This notice may not be removed or altered from any source distribution.*/
 
 #include <iostream>
+#include <ctime>
 #include <SFML/Network.hpp>
 #include "sha256.h"
 
 using namespace std;
-
+string timestamp()
+{
+    	time_t now;
+        time(&now);
+        struct tm* ptm;
+        
+        ptm = gmtime(&now);
+        
+        return to_string(ptm->tm_yday);
+}
 int main(int argc, char *argv[])
 {
     if(argc == 6)
@@ -44,7 +54,7 @@ int main(int argc, char *argv[])
 
         std::string publicAddress = sf::IpAddress::getPublicAddress(sf::milliseconds(1000)).toString(); //"127.0.0.1";
 
-        std::string hash = sha256(subDomain+publicAddress+password);
+        std::string hash = sha256(subDomain+publicAddress+password+timestamp());
 
         packet << subDomain << hash;
 
