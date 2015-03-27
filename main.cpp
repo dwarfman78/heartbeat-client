@@ -15,7 +15,7 @@ claim that you wrote the original software. If you use this software
 2. Altered source versions must be plainly marked as such, and must not be
         misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.*/
-
+#include <sstream>
 #include <iostream>
 #include <ctime>
 #include <SFML/Network.hpp>
@@ -29,8 +29,10 @@ string timestamp()
         struct tm* ptm;
         
         ptm = gmtime(&now);
-        
-        return to_string(ptm->tm_yday);
+	std::ostringstream ss;        
+        ss << ptm->tm_yday;
+        return ss.str();
+//        return to_string(ptm->tm_yday);
 }
 int main(int argc, char *argv[])
 {
