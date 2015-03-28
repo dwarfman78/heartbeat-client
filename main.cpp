@@ -27,12 +27,12 @@ string timestamp()
     	time_t now;
         time(&now);
         struct tm* ptm;
-        
+
         ptm = gmtime(&now);
-	std::ostringstream ss;        
+	    std::ostringstream ss;
         ss << ptm->tm_yday;
+
         return ss.str();
-//        return to_string(ptm->tm_yday);
 }
 int main(int argc, char *argv[])
 {
@@ -50,18 +50,18 @@ int main(int argc, char *argv[])
 
         sf::UdpSocket udpSocket;
 
-        sf::Packet packet;
-
         SHA256 sha256;
 
         std::string publicAddress = sf::IpAddress::getPublicAddress(sf::milliseconds(1000)).toString(); //"127.0.0.1";
 
-        std::string hash = sha256(subDomain+publicAddress+password+timestamp());
-
-        packet << subDomain << hash;
+        sf::Packet packet;
 
         while(true)
         {
+            std::string hash = sha256(subDomain+publicAddress+password+timestamp());
+
+            packet << subDomain << hash;
+
             sf::sleep(sf::milliseconds(atoi(sleepTime.c_str())));
 
             udpSocket.send(packet, {serverIp}, (unsigned short)std::atol(serverPort.c_str()));
