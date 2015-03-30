@@ -7,7 +7,6 @@ link_directories("${PROJECT_SOURCE_DIR}/extlibs/SFML-2.2/build/lib")
 link_directories("${CMAKE_FIND_ROOT_PATH}/lib")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-
 set(SOURCE_FILES main.cpp sha256.cpp)
 add_executable(heartbeat_client ${SOURCE_FILES})
 
