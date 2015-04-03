@@ -68,6 +68,8 @@ int main(int argc, char *argv[])
             packet << subDomain << hash;
 
             udpSocket.send(packet, {serverIp}, (unsigned short)std::atol(serverPort.c_str()));
+
+	    packet.clear();
 	    
   	    std::cout << "Going to sleep for : " + sleepTime + " milliseconds." << std::endl;
 
