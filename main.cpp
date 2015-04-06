@@ -52,18 +52,26 @@ int main(int argc, char *argv[])
 
         SHA256 sha256;
 
-        std::string publicAddress = sf::IpAddress::getPublicAddress(sf::milliseconds(1000)).toString();
-
         sf::Packet packet;
+
+	std::string publicAddress;
+
+	std::string timestampStr;
+
+	std::string hash;
 
 	std::cout << "Hello, launching heartbeat-client (1.1)" << std::endl;
 
         while(true)
         {
-	    std::string timestampStr = timestamp();
+		
+	    publicAddress = sf::IpAddress::getPublicAddress(sf::milliseconds(1000)).toString();
+
+	    timestampStr = timestamp();
 
 	    std::cout << "Sending heartbeat with : \n\t Subdomain : " << subDomain << "\n\t Sender : " << publicAddress << "\n\t Timestamp : " << timestampStr << std::endl;
-            std::string hash = sha256(subDomain+publicAddress+password+timestampStr);
+            
+	    hash = sha256(subDomain+publicAddress+password+timestampStr);
 
             packet << subDomain << hash;
 
